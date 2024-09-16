@@ -8,7 +8,7 @@ WORKDIR /app
 RUN apt update && apt install -y build-essential libpq-dev
 
 # Copy requirements file
-COPY requirements.txt .
+COPY /analytics/requirements.txt .
 
 # Install Python dependencies
 RUN pip install --upgrade pip setuptools wheel && pip install -r requirements.txt
@@ -24,4 +24,4 @@ ENV DB_NAME=mydatabase
 COPY . .
 
 # Command to run the application
-CMD ["python", "app.py"]
+CMD ["python", "/analytics/app.py"]
