@@ -20,7 +20,7 @@ WORKDIR /db
 COPY ./db .
 
 RUN service postgresql start && \
-psql -c "CREATE USER $DB_USERNAME PASSWORD '$DB_PASSWORD'" && \
+psql -c "CREATE USER $DB_USERNAME PASSWORD $DB_PASSWORD " && \
 psql < db/1_create_tables.sql && \
 psql < db/2_seed_users.sql && \
 psql < db/3_seed_tokens.sql && \
