@@ -32,14 +32,6 @@ RUN pip install --upgrade pip setuptools wheel
 
 RUN pip install -r requirements.txt
 
-# Set environment variables
-
-ENV DB_USERNAME=myuser
-ENV DB_PASSWORD=mypassword
-ENV DB_NAME=mydatabase
-ENV DB_HOST=10.100.116.89
-ENV DB_PORT=5433
-
 # Expose port 5153 for the app
 
 EXPOSE 5153
