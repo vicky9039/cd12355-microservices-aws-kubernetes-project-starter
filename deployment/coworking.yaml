@@ -30,27 +30,28 @@ spec:
     spec:
       containers:
       - name: coworking
-        image: 223054443484.dkr.ecr.us-east-1.amazonaws.com/coworking:0.0.1
+        image: 562039328041.dkr.ecr.us-east-1.amazonaws.com/coworker:0.0.1
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
             path: /health_check
             port: 5153
           initialDelaySeconds: 5
-          timeoutSeconds: 2
+          timeoutSeconds: 30
+          failureThreshold: 3
         readinessProbe:
           httpGet:
             path: "/readiness_check"
             port: 5153
           initialDelaySeconds: 5
-          timeoutSeconds: 5
+          timeoutSeconds: 30
         envFrom:
         - configMapRef:
-            name: <NAME OF THE ConfigMap>
+            name: config  
         env:
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: <NAME OF THE Secret>
-              key: <THE KEY FROM Secret WHICH has THE ENCODED PASSWORD>
+              name: db-secret
+              key: DB_PASSWORD
       restartPolicy: Always
