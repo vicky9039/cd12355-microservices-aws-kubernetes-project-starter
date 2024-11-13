@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: coworking
-        image: 562039328041.dkr.ecr.us-east-1.amazonaws.com/coworker:0.0.1
+        image: 562039328041.dkr.ecr.us-east-1.amazonaws.com/coworker:$CODEBUILD_BUILD_NUMBER
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -49,7 +49,7 @@ spec:
         - configMapRef:
             name: config  
         env:
-        - name: DB_PASSWORD
+        - name: db-secret
           valueFrom:
             secretKeyRef:
               name: db-secret
